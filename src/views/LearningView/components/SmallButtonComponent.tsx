@@ -18,8 +18,9 @@ export const SmallButtonComponent: React.FC<SmallButtonComponentProps> = ({
     <Button
       className="ButtonLogin"
       w="170px"
-      h="26px"
-      top="405px"
+      h="35px"
+      top="380px"
+      right="80px"
       position="absolute"
       bg="#D9D9D9"
       borderRadius="20px"
@@ -33,7 +34,7 @@ export const SmallButtonComponent: React.FC<SmallButtonComponentProps> = ({
           width: "100%",
           height: "25px",
           left: "0",
-          top: "0px",
+          top: "5px",
           position: "absolute",
           color: "#342F2F",
           fontSize: `${buttonFontSize}px`,

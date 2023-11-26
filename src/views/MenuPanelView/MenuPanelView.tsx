@@ -14,7 +14,7 @@ export const MenuPanelView: React.FC<MenuPanelViewProps> = () => {
         h="300px"
         w="300px"
         top="350px"
-        backgroundImage="../../assets/Sun.svg"
+        backgroundImage="../../assets/learn_image.jpg"
         to={"/learning"}
       ></PhotoBorderBox>
     </PageWrapper>

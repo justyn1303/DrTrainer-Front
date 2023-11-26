@@ -1,38 +1,116 @@
-import { Flex } from "@chakra-ui/react";
-import { HamburgerMenu } from "./HamburgerMenu";
-import { HEADER_X_PADDING } from "./constants";
+import React, { useState } from "react";
+import {
+  Box,
+  Flex,
+  Spacer,
+  Text,
+  HStack,
+  Button,
+  Menu,
+  MenuButton,
+  Avatar,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+} from "@chakra-ui/react";
+import { AddIcon, CheckCircleIcon, MinusIcon } from "@chakra-ui/icons";
 
-interface HeaderProps {
-  isMenu?: boolean;
-}
+interface HeaderProps {}
 
-export const Header: React.FC<HeaderProps> = ({ isMenu }) => {
+export const Header: React.FC<HeaderProps> = () => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+    // Dodaj kod do otwierania/zamykania sidebaru tutaj
+  };
+
   return (
-    <Flex
-      background="primary"
-      w="100vw"
-      borderBottomRadius="15px"
-      pt={{ sm: "67px" }}
-      pb={{ sm: "55px" }}
-      boxShadow="standard"
-      justifyContent={"center"}
-      pos="relative"
-      maxW="100%"
+    <Box
+      as="b"
+      position="fixed"
+      top="0"
+      left="0"
+      right="0"
+      zIndex="999"
+      p={2}
+      w="100%"
+      bg="#342F2F"
+      color="#D9D9D9"
     >
-      <Flex
-        px={HEADER_X_PADDING}
-        justifyContent={isMenu ? "space-between" : "center"}
-        flex={1}
-        align="center"
-      >
-        <Flex
-          pr={{ base: isMenu ? `60px` : 0 }}
-          pt={{ base: isMenu ? "72px" : "67px", sm: 0 }}
-          pb={{ base: isMenu ? "48px" : "51px", sm: 0 }}
-        ></Flex>
-
-        {isMenu && <HamburgerMenu />}
-      </Flex>
-    </Flex>
+      <HStack align="center">
+        <Box ml={700}>
+          <Text fontSize="30px" color="#D9D9D9">
+            DR TRAINER
+          </Text>
+        </Box>
+        <Spacer />
+        <Flex alignItems={"right"}>
+          <Button
+            variant={"solid"}
+            colorScheme={"#342F2F"}
+            size={"sm"}
+            mr={5}
+            leftIcon={<CheckCircleIcon />}
+            color="#D9D9D9"
+          >
+            Przesuń
+          </Button>
+          <Button
+            variant={"solid"}
+            colorScheme={"#342F2F"}
+            size={"sm"}
+            mr={5}
+            leftIcon={<CheckCircleIcon />}
+            color="#D9D9D9"
+          >
+            Zaznacz
+          </Button>
+          <Button
+            variant={"solid"}
+            colorScheme={"#342F2F"}
+            size={"sm"}
+            mr={5}
+            leftIcon={<AddIcon />}
+            color="#D9D9D9"
+          >
+            Powiększ
+          </Button>
+          <Button
+            variant={"solid"}
+            colorScheme={"#342F2F"}
+            size={"sm"}
+            mr={5}
+            leftIcon={<MinusIcon />}
+            color="#D9D9D9"
+          >
+            Pomniejsz
+          </Button>
+          <Menu>
+            <MenuButton
+              as={Button}
+              rounded={"full"}
+              variant={"link"}
+              cursor={"pointer"}
+              minW={0}
+              mr={4}
+            >
+              <Avatar
+                size={"sm"}
+                src={
+                  "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                }
+              />
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Rola</MenuItem>
+              <MenuItem>Profil</MenuItem>
+              <MenuDivider />
+              <MenuItem>Wyloguj się</MenuItem>
+            </MenuList>
+          </Menu>
+        </Flex>
+      </HStack>
+    </Box>
   );
 };
