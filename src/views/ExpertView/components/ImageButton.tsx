@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Box } from "@chakra-ui/react";
-import { SmallButtonComponent } from "./SmallButtonComponent";
+import { SmallButtonComponent } from "../../LearningView/components/SmallButtonComponent";
 
 interface ImageButtonProps {
   buttonText: string;

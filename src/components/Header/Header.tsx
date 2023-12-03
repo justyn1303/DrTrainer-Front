@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Flex,
@@ -15,15 +15,19 @@ import {
 } from "@chakra-ui/react";
 import { AddIcon, CheckCircleIcon, MinusIcon } from "@chakra-ui/icons";
 
-interface HeaderProps {}
+interface HeaderProps {
+  onDrawCircleClick: () => void;
+}
 
-export const Header: React.FC<HeaderProps> = () => {
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
+export const Header: React.FC<HeaderProps> = ({ onDrawCircleClick }) => {
+  const [isDrawingMode, setIsDrawingMode] = useState(false);
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!isSidebarOpen);
-    // Dodaj kod do otwierania/zamykania sidebaru tutaj
-  };
+  useEffect(() => {
+    document.body.style.cursor = isDrawingMode ? "crosshair" : "auto";
+    return () => {
+      document.body.style.cursor = "auto";
+    };
+  }, [isDrawingMode]);
 
   return (
     <Box
@@ -63,6 +67,10 @@ export const Header: React.FC<HeaderProps> = () => {
             mr={5}
             leftIcon={<CheckCircleIcon />}
             color="#D9D9D9"
+            onClick={() => {
+              onDrawCircleClick();
+              setIsDrawingMode(!isDrawingMode);
+            }}
           >
             Zaznacz
           </Button>

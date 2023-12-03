@@ -11,8 +11,6 @@ export const DetectionWindow: React.FC<DetectionWindowProps> = ({
   imageData,
   ...rest
 }) => {
-  const [image, setImage] = useState<string | undefined>(imageData);
-
   return (
     <Box
       className="BorderBox"
@@ -27,16 +25,6 @@ export const DetectionWindow: React.FC<DetectionWindowProps> = ({
       mx="auto"
       overflow="hidden"
       {...rest}
-    >
-      {image ? (
-        <img
-          src={image}
-          alt="Wczytany obraz"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
-      ) : (
-        children
-      )}
-    </Box>
+    ></Box>
   );
 };

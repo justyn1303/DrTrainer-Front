@@ -1,79 +1,36 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { PageWrapper } from "../../components/PageWrapper";
 import { Header } from "../../components/Header/Header";
 import { DetectionWindow } from "../LearningView/components/DetectionWindow";
 import { ButtonComponent } from "../../components/ButtonComponent";
 import { SmallButtonComponent } from "./components/SmallButtonComponent";
 import { HamburgerMenu } from "../../components/Header/HamburgerMenu";
-import { ImageButton } from "./components/ImageButton";
-import {
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-} from "@chakra-ui/react";
+import { CheckingModal } from "../../components/Modal";
 
 interface LearningViewProps {}
 
 export const LearningView: React.FC<LearningViewProps> = () => {
-  const [image, setImage] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files && e.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result as string);
-        setError(null);
-      };
-      reader.onerror = () => {
-        setError("Coś poszło nie tak");
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleButtonClick = () => {
-    if (inputRef.current) {
-      inputRef.current.click();
-    }
-  };
+  const [isDrawing, setIsDrawing] = useState(false);
 
   //modal
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [isCheckingModalOpen, setIsCheckingModalOpen] = useState(false);
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
 
   const handleCheckButtonClick = (isAnswerCorrect: boolean) => {
-    setIsCorrect(isAnswerCorrect);
-    onOpen();
+    setIsAnswerCorrect(isAnswerCorrect);
+    setIsCheckingModalOpen(true);
   };
 
-  const getModalColor = () => {
-    if (isCorrect === true) {
-      return "green.500";
-    } else if (isCorrect === false) {
-      return "red.500";
-    } else {
-      return "gray.500";
-    }
+  //rysowanie
+  const handleDrawButtonClick = () => {
+    console.log("Dziala");
   };
 
   return (
     <PageWrapper>
-      <Header />
+      <Header onDrawCircleClick={handleDrawButtonClick} />
       <HamburgerMenu />
-      <DetectionWindow>
-        {image ? (
-          <img src={image} alt="Wczytany obraz" style={{ maxWidth: "100%" }} />
-        ) : null}
-        {error && <p style={{ color: "red" }}>{error}</p>}
-      </DetectionWindow>
+      <DetectionWindow />
       <SmallButtonComponent
         top="250px"
         right="80px"
@@ -86,11 +43,6 @@ export const LearningView: React.FC<LearningViewProps> = () => {
         buttonText="NOWY TEST"
         onClick={() => console.log("Przycisk NOWY TEST został kliknięty")}
       ></SmallButtonComponent>
-      <ImageButton
-        buttonText="WCZYTAJ OBRAZ"
-        onButtonClick={handleButtonClick}
-        onInputChange={handleImageChange}
-      />
       <ButtonComponent
         buttonFontSize={20}
         top="750px"
@@ -98,19 +50,11 @@ export const LearningView: React.FC<LearningViewProps> = () => {
         buttonText="SPRAWDŹ"
         onClick={() => handleCheckButtonClick(true)}
       ></ButtonComponent>
-      <Modal isOpen={isOpen} onClose={onClose} size="xl">
-        <ModalOverlay />
-        <ModalContent bgColor={getModalColor()}>
-          <ModalHeader>
-            {isCorrect === true ? "Dobra odpowiedź!" : "Źle!"}
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            Treść modala, Treść modala, Treść modala, Treść modala, Treść
-            modala, Treść modala, Treść modala
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <CheckingModal
+        isOpen={isCheckingModalOpen}
+        onClose={() => setIsCheckingModalOpen(false)}
+        isCorrect={isAnswerCorrect}
+      />
     </PageWrapper>
   );
 };
