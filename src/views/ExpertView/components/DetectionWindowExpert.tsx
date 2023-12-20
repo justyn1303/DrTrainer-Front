@@ -92,7 +92,7 @@ export const DetectionWindowExpert: React.FC<DetectionWindowExpertProps> = ({
             width: 0,
             height: 0,
             borderRadius: "50%",
-            border: "2px dashed #FF0000", // Czerwony kolor dla okręgu
+            border: "2px dashed #FF0000",
             pointerEvents: "none",
           }}
         />
@@ -106,7 +106,7 @@ export const DetectionWindowExpert: React.FC<DetectionWindowExpertProps> = ({
             width: endPosition.x - startPosition.x,
             height: endPosition.y - startPosition.y,
             borderRadius: "50%",
-            border: "2px dashed #FF0000", // Czerwony kolor dla okręgu
+            border: "2px dashed #FF0000",
             pointerEvents: "none",
           }}
         />
