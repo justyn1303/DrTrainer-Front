@@ -19,12 +19,6 @@ export const RegisterPanel: React.FC<RegisterPanelProps> = () => {
           <RegisterFormSection />
         </Flex>
         <Flex justify="center">
-          <ButtonComponent
-            buttonText="Zarejestruj się"
-            top={["555px", "555px", "535px"]}
-          />
-        </Flex>
-        <Flex justify="center">
           <TextWithLink
             top={["525px", "525px", "615px"]}
             text="Masz konto?"

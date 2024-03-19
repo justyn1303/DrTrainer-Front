@@ -47,7 +47,7 @@ export const ExpertView: React.FC<ExpertViewProps> = () => {
 
   //rysowanie
   const [isDrawingMode, setIsDrawingMode] = useState(false);
-  const [drawingCircles, setDrawingCircles] = useState<any[]>([]); // zmiana typu
+  const [drawingCircles, setDrawingCircles] = useState<any[]>([]);
   const [startPosition, setStartPosition] = useState<{
     x: number;
     y: number;
@@ -123,7 +123,7 @@ export const ExpertView: React.FC<ExpertViewProps> = () => {
         top="750px"
         right="80px"
         buttonText="SPRAWDŹ"
-        onClick={() => handleCheckButtonClick(true)}
+        onClick={() => handleCheckButtonClick(false)}
       ></ButtonComponent>
       <CheckingModal
         isOpen={isCheckingModalOpen}

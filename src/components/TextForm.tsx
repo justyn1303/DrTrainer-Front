@@ -1,21 +1,24 @@
-import React, { useState } from "react";
-import { Box, BoxProps, Input } from "@chakra-ui/react";
+import React, { useState, ChangeEvent } from "react";
+import { Box, Input, BoxProps } from "@chakra-ui/react";
 
-interface TextFormProps extends BoxProps {
+interface TextFormProps extends Omit<BoxProps, "onChange"> {
   top?: string | string[];
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
 export const TextForm: React.FC<TextFormProps> = ({
   top = "370px",
+  value = "",
+  onChange = () => {},
   ...rest
 }) => {
-  const [inputValue, setInputValue] = useState("");
   const [isActive, setIsActive] = useState(false);
 
   const topValue = Array.isArray(top) ? top[0] : top;
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onChange(event.target.value);
   };
 
   const handleFocus = () => {
@@ -39,7 +42,7 @@ export const TextForm: React.FC<TextFormProps> = ({
     >
       <Input
         type="text"
-        value={inputValue}
+        value={value}
         onChange={handleInputChange}
         onFocus={handleFocus}
         onBlur={handleBlur}

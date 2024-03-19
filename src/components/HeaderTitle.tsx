@@ -8,8 +8,8 @@ export const HeaderTitle: React.FC<HeaderTitleProps> = () => {
     <Box
       className="DrTrainer"
       w={["100%", "100%", "744px"]}
-      h={["auto", "auto", "208px"]}
-      top="70px"
+      h={["180px", "auto", "auto"]}
+      top="3%"
       pos="absolute"
       textAlign="center"
       color="#D9D9D9"

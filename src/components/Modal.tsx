@@ -39,8 +39,7 @@ export const CheckingModal: React.FC<CheckingModalProps> = ({
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          Treść modala, Treść modala, Treść modala, Treść modala, Treść modala,
-          Treść modala, Treść modala
+          ZAZNACZONY PRZEZ CIEBIE OBSZAR JEST NIEPRAWIDŁOWY!
         </ModalBody>
       </ModalContent>
     </Modal>

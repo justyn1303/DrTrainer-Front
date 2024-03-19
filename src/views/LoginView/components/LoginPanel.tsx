@@ -18,9 +18,7 @@ export const LoginPanel: React.FC<LoginPanelProps> = () => {
         <Flex justify="center">
           <LoginFormSection />
         </Flex>
-        <Flex justify="center">
-          <ButtonComponent top={["405px", "405px", "405px"]} />
-        </Flex>
+
         <Flex justify="center">
           <TextWithLink
             top={["525px", "525px", "525px"]}
